@@ -172,7 +172,7 @@ const CartDrawer = () => {
                 <span>{formatPrice(subtotal)}</span>
               </div>
               <div className="cart-total-row">
-                <span>Tax (8.5%)</span>
+                <span>Tax (7%)</span>
                 <span>{formatPrice(tax)}</span>
               </div>
               <div className="cart-total-row total">

@@ -145,7 +145,7 @@ const ProductCard = ({
         <h3 className="product-card-name">{product.name}</h3>
         <p className="product-card-description">{product.description}</p>
         <div className="product-card-footer">
-          <span className="product-card-price">{formatPrice(product.price)}</span>
+          <span className="product-card-price">{formatPrice(product.price)} / {product.category_name === 'Fudge' ? 'lb' : 'dozen'}</span>
           {product.originalPrice && (
             <span className="product-card-original-price">
               {formatPrice(product.originalPrice)}

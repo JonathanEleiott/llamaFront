@@ -11,7 +11,7 @@ const About = () => {
     {
       icon: Leaf,
       title: 'Quality Ingredients',
-      description: 'We source the finest ingredients, supporting local farms and sustainable suppliers whenever possible.',
+      description: 'Proudly crafting small-batch baked goods with quality ingredients and homemade goodness.',
     },
     {
       icon: Users,
@@ -36,6 +36,11 @@ const About = () => {
     role: 'Head Pastry Consumer',
     bio: 'Trained extensively at the counter, Jonathan specializes in quality control through enthusiastic sampling. Responsible for approving croissants, danishes, and anything with butter.',
     },
+    {
+      name: 'Lux Eleiott',
+      role: 'Big Helper',
+      bio: 'Specializes in applying stickers, taping boxes securely, and carefully mailing cookie packages.',
+    },
   ];
 
   return (
@@ -45,8 +50,7 @@ const About = () => {
         <div className="container">
           <h1 className="about-title">Our Story</h1>
           <p className="about-subtitle">
-            A passion for baking that started in a small kitchen has grown into
-            a beloved neighborhood bakery.
+            A passion for baking that started in a small kitchen.
           </p>
         </div>
       </section>
@@ -58,11 +62,11 @@ const About = () => {
             <div className="story-text">
               <h2>How It All Began</h2>
               <p>
-                Llama Treats Bakery was born in 2018 from a simple dream: to create
+                Llama Treats Bakery was born in 2022 from a simple dream: to create
                 a place where the aroma of freshly baked goods fills the air and
                 every bite brings joy. What started as a small operation in founder
                 Leslie's home kitchen quickly grew as word spread about our
-                delicious cookies and pastries.
+                delicious cookies and fudge.
               </p>
               <p>
                 Our name comes from Leslie's favorite animal. The llama, a symbol of hard work
@@ -126,38 +130,38 @@ const About = () => {
           <h2 className="section-title">Our Journey</h2>
           <div className="timeline">
             <div className="timeline-item">
-              <div className="timeline-year">2018</div>
+              <div className="timeline-year">2022</div>
               <div className="timeline-content">
                 <h3>The Beginning</h3>
-                <p>Started baking from home, selling at local farmers markets.</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-year">2019</div>
-              <div className="timeline-content">
-                <h3>First Storefront</h3>
-                <p>Opened our first small bakery location on Oak Street.</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-year">2021</div>
-              <div className="timeline-content">
-                <h3>Expansion</h3>
-                <p>Moved to our current larger location with a full production kitchen.</p>
+                <p>Started baking for friends & family.</p>
               </div>
             </div>
             <div className="timeline-item">
               <div className="timeline-year">2023</div>
               <div className="timeline-content">
-                <h3>Award Winner</h3>
-                <p>Recognized as "Best Local Bakery" by the City Food Awards.</p>
+                <h3>Relocation</h3>
+                <p>Moved from Arizona to South Carolina.</p>
               </div>
             </div>
             <div className="timeline-item">
-              <div className="timeline-year">Today</div>
+              <div className="timeline-year">2024</div>
+              <div className="timeline-content">
+                <h3>Expansion</h3>
+                <p>Started producing Cookie Advent Calendars for Christmas.</p>
+              </div>
+            </div>
+            <div className="timeline-item">
+              <div className="timeline-year">2025</div>
+              <div className="timeline-content">
+                <h3>Community Outreach</h3>
+                <p>Began the "Share the Cookie" initiative.</p>
+              </div>
+            </div>
+            <div className="timeline-item">
+              <div className="timeline-year">2026</div>
               <div className="timeline-content">
                 <h3>Growing Strong</h3>
-                <p>Continuing to serve our community with fresh, delicious baked goods daily.</p>
+                <p>Launched the Llama Treats Bakery website.</p>
               </div>
             </div>
           </div>

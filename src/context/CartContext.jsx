@@ -119,8 +119,8 @@ export const CartProvider = ({ children }) => {
     }, 0);
   }, [items]);
 
-  // Tax calculation (example: 8.5% sales tax)
-  const taxRate = 0.085;
+  // Tax calculation (example: 7% sales tax)
+  const taxRate = 0.07;
   const tax = useMemo(() => subtotal * taxRate, [subtotal]);
 
   const total = useMemo(() => subtotal + tax, [subtotal, tax]);

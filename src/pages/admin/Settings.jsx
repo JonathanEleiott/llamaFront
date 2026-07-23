@@ -13,7 +13,7 @@ const Settings = () => {
     tagline: 'Handcrafted baked goods made with love',
     email: 'hello@llamatreats.com',
     phone: '(555) 123-4567',
-    address: '123 Bakery Lane\nSweet Town, ST 12345',
+    address: 'Greer, SC 29651',
 
     // Hours
     mondayHours: '7:00 AM - 7:00 PM',

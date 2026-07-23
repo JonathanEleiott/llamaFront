@@ -130,16 +130,16 @@ const OrderConfirmation = () => {
               <Clock size={24} />
               <div>
                 <h3>Estimated Time</h3>
-                <p>Your order will be ready within 30-45 minutes</p>
+                <p>Your order will be ready to ship within 24-48 hours</p>
               </div>
             </div>
-            <div className="detail-card">
+            {/* <div className="detail-card">
               <MapPin size={24} />
               <div>
                 <h3>Pickup Location</h3>
-                <p>123 Baker Street, Llamaville, CA 90210</p>
+                <p>Greer, SC 29651</p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="confirmation-next-steps">

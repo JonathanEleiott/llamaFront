@@ -227,7 +227,7 @@ export const mockPromotions = [
     name: 'Free Delivery',
     title: 'Free Local Delivery',
     subtitle: 'On orders over $35',
-    description: 'Enjoy free delivery on all orders over $35 within 10 miles of our bakery.',
+    description: 'Enjoy free delivery on all orders over $50.',
     buttonText: 'Learn More',
     buttonLink: '/delivery',
     image: null,

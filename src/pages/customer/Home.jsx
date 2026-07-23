@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Truck, Clock, Award } from 'lucide-react';
+import { ArrowRight, Star, Truck, Clock, Award, Heart, Sparkles } from 'lucide-react';
 import { ImageSlider, ProductCard, Button } from '../../components/common';
 import { useBakery } from '../../context/BakeryContext';
 import './Home.css';
@@ -38,6 +38,16 @@ const Home = () => {
         },
       ];
 
+  // Add Welcome before promotions in slider
+  heroSlides.unshift({
+        id: 999,
+        title: 'Welcome to Llama Treats Bakery',
+        subtitle: 'But through love server one another. - Gal 5:13',
+        description: 'Experience the dinest baked goods made with premium ingredients',
+        backgroundColor: 'rgb(248, 232, 212)',
+        textColor: '#5c3d2e'
+      });
+
   const features = [
     {
       icon: Star,
@@ -46,18 +56,18 @@ const Home = () => {
     },
     {
       icon: Clock,
-      title: 'Fresh Daily',
-      description: 'Baked fresh every morning to ensure the best taste and texture.',
+      title: 'Fresh',
+      description: 'Made in small batches with care to ensure every bite is fresh and delicious.',
+    },
+    {
+      icon: Sparkles,
+      title: 'Recommended',
+      description: 'Official cookie supplier of Twitch streamer CanehdianMountie.',
     },
     {
       icon: Truck,
-      title: 'Local Delivery',
-      description: 'Free delivery on orders over $35 within 10 miles.',
-    },
-    {
-      icon: Award,
-      title: 'Award Winning',
-      description: 'Recognized for excellence in artisan baking since 2018.',
+      title: 'Delivery',
+      description: 'Shipping love and cookies throughout the US.',
     },
   ];
 
@@ -156,8 +166,8 @@ const Home = () => {
               <h2 className="section-title">Our Story</h2>
               <p>
                 Llama Treats Bakery started with a simple dream: to bring joy through
-                delicious, handcrafted baked goods. Founded in 2018, we've grown from a
-                small kitchen operation into a beloved local bakery.
+                delicious, handcrafted baked goods. Founded in 2022, we've continued to grow 
+                from a small kitchen operation.
               </p>
               <p>
                 Every item we make is crafted with care, using traditional techniques

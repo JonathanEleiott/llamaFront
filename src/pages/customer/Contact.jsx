@@ -41,24 +41,9 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: MapPin,
-      title: 'Visit Us',
-      lines: ['123 Bakery Lane', 'Sweet Town, ST 12345'],
-    },
-    {
-      icon: Phone,
-      title: 'Call Us',
-      lines: ['(555) 123-4567', 'Mon-Sat: 7am-7pm'],
-    },
-    {
       icon: Mail,
       title: 'Email Us',
-      lines: ['hello@llamatreats.com', 'orders@llamatreats.com'],
-    },
-    {
-      icon: Clock,
-      title: 'Hours',
-      lines: ['Mon-Sat: 7am - 7pm', 'Sunday: 8am - 2pm'],
+      lines: ['llamatreatsbakery@gmail.com'],
     },
   ];
 
@@ -173,14 +158,14 @@ const Contact = () => {
             </div>
 
             {/* Map Placeholder */}
-            <div className="map-section">
+            {/* <div className="map-section">
               <h3>Find Us</h3>
               <div className="map-placeholder">
                 <MapPin size={48} />
                 <p>Interactive map will be displayed here</p>
-                <span>123 Bakery Lane, Sweet Town, ST 12345</span>
+                <span>Greer, SC 29651</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -200,7 +185,7 @@ const Contact = () => {
             <div className="faq-item">
               <h3>Do you offer delivery?</h3>
               <p>
-                We offer free local delivery on orders over $35 within 10 miles of our
+                We offer free local delivery on orders over $35 within 5 miles of our
                 bakery. Additional delivery options are available for larger orders.
               </p>
             </div>

@@ -58,19 +58,11 @@ const Footer = () => {
             <ul className="footer-contact">
               <li>
                 <MapPin size={18} />
-                <span>123 Bakery Lane<br />Sweet Town, ST 12345</span>
-              </li>
-              <li>
-                <Phone size={18} />
-                <a href="tel:+15551234567">(555) 123-4567</a>
+                <span>Greer, SC 29651</span>
               </li>
               <li>
                 <Mail size={18} />
-                <a href="mailto:hello@llamatreats.com">hello@llamatreats.com</a>
-              </li>
-              <li>
-                <Clock size={18} />
-                <span>Mon-Sat: 7am - 7pm<br />Sun: 8am - 2pm</span>
+                <a href="mailto:llamatreatsbakery@gmail.com">llamatreatsbakery@gmail.com</a>
               </li>
             </ul>
           </div>

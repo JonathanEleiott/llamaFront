@@ -445,7 +445,7 @@ const Checkout = () => {
                   <>
                     <h3 style={{ marginTop: '1.5rem' }}>Pickup Details</h3>
                     <p className="pickup-address">
-                      <strong>Pickup Location:</strong> 123 Baker Street, Llamaville, CA 90210
+                      <strong>Pickup Location:</strong> Greer, SC 29651
                     </p>
                     <div className="form-row">
                       <Input
@@ -592,13 +592,13 @@ const Checkout = () => {
                     <span>{formatPrice(subtotal)}</span>
                   </div>
                   <div className="summary-row">
-                    <span>Tax (8.5%)</span>
+                    <span>Tax (7%)</span>
                     <span>{formatPrice(tax)}</span>
                   </div>
                   {formData.orderType === 'delivery' && (
                     <div className="summary-row">
                       <span>Delivery Fee</span>
-                      <span>$5.00</span>
+                      <span>$10.00</span>
                     </div>
                   )}
                   <div className="summary-row total">
@@ -738,7 +738,7 @@ const Checkout = () => {
                 {formData.orderType === 'delivery' && (
                   <div className="summary-row">
                     <span>Delivery</span>
-                    <span>$5.00</span>
+                    <span>$10.00</span>
                   </div>
                 )}
                 <div className="summary-row total">
