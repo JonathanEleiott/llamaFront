@@ -185,8 +185,7 @@ const Contact = () => {
             <div className="faq-item">
               <h3>Do you offer delivery?</h3>
               <p>
-                We offer free local delivery on orders over $35 within 5 miles of our
-                bakery. Additional delivery options are available for larger orders.
+                We ship our cookies all across the US. Contact us for delivery options for local and large orders.
               </p>
             </div>
             <div className="faq-item">

@@ -42,7 +42,7 @@ const Home = () => {
   heroSlides.unshift({
         id: 999,
         title: 'Welcome to Llama Treats Bakery',
-        subtitle: 'But through love server one another. - Gal 5:13',
+        subtitle: 'But through love serve one another. - Gal 5:13',
         description: 'Experience the finest baked goods made with premium ingredients.',
         backgroundColor: 'rgb(248, 232, 212)',
         textColor: '#5c3d2e'
