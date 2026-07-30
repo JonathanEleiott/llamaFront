@@ -605,7 +605,7 @@ const Checkout = () => {
                     <span>Total</span>
                     <span>
                       {formatPrice(
-                        total + (formData.orderType === 'delivery' ? 5 : 0)
+                        total + (formData.orderType === 'delivery' ? 10 : 0)
                       )}
                     </span>
                   </div>
@@ -634,7 +634,7 @@ const Checkout = () => {
                   ) : (
                     <>
                       <CreditCard size={18} />
-                      Pay {formatPrice(total + (formData.orderType === 'delivery' ? 5 : 0))}
+                      Pay {formatPrice(total + (formData.orderType === 'delivery' ? 10 : 0))}
                     </>
                   )}
                 </Button>
@@ -744,7 +744,7 @@ const Checkout = () => {
                 <div className="summary-row total">
                   <span>Total</span>
                   <span>
-                    {formatPrice(total - discount + (formData.orderType === 'delivery' ? 5 : 0))}
+                    {formatPrice(total - discount + (formData.orderType === 'delivery' ? 10 : 0))}
                   </span>
                 </div>
               </div>
