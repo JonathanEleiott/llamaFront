@@ -208,7 +208,6 @@ const Menu = () => {
             {/* Products Grid */}
             {filteredProducts.length > 0 ? (
               <div className="menu-grid">
-                {console.log(filteredProducts)}
                 {filteredProducts.map((product) => (
                   <ProductCard
                     key={product.id}

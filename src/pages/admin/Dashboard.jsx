@@ -61,7 +61,6 @@ const Dashboard = () => {
   ];
 
   const recentProducts = products.slice(0, 5);
-console.log('product here', recentProducts)
   return (
     <div className="dashboard-page">
       <div className="page-header">

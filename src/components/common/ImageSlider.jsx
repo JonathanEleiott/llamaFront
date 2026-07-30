@@ -56,7 +56,6 @@ const ImageSlider = ({
   return (
     <div className={`image-slider ${className}`}>
       <div className="slides-container" style={{ aspectRatio }}>
-        {console.log(slides)}
         {slides.map((slide, index) => (
           <div
             key={slide.id || index}
