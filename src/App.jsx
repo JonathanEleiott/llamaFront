@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from "./components/common/ScrollToTop";
 import { BakeryProvider } from './context/BakeryContext';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
@@ -41,6 +42,7 @@ function App() {
               <Router>
               <CartDrawer />
               <Routes>
+                <ScrollToTop />
                 {/* Customer Routes */}
                 <Route path="/" element={<CustomerLayout />}>
                   <Route index element={<Home />} />

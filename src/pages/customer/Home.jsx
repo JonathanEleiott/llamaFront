@@ -166,8 +166,8 @@ const Home = () => {
               <h2 className="section-title">Our Story</h2>
               <p>
                 Llama Treats Bakery started with a simple dream: to bring joy through
-                delicious, handcrafted baked goods. Founded in 2022, we've continued to grow 
-                from a small kitchen operation.
+                delicious, handcrafted baked goods. Founded in 2022, we've continued to grow by
+                expanding our recipe box and community programs.
               </p>
               <p>
                 Every item we make is crafted with care, using traditional techniques
