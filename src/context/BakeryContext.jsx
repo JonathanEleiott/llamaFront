@@ -30,8 +30,6 @@ export const BakeryProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      console.log('USE MOCK DATA', USE_MOCK_DATA);
-
       if (USE_MOCK_DATA) {
         // Use mock data
         await new Promise((resolve) => setTimeout(resolve, 300));

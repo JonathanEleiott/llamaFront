@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { Button, Input, TextArea } from '../../components/common';
+import { API_BASE_URL } from '../../api/config';
 import './Contact.css';
 
 const Contact = () => {
@@ -25,8 +26,19 @@ const Contact = () => {
     e.preventDefault();
     setSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await fetch(`${API_BASE_URL}/contact/`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      }
+    );
 
     setSubmitting(false);
     setSubmitted(true);
