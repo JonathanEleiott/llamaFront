@@ -26,7 +26,7 @@ const Contact = () => {
     e.preventDefault();
     setSubmitting(true);
 
-    await fetch(`${API_BASE_URL}/contact/`,
+    fetch(`${API_BASE_URL}/contact/`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
