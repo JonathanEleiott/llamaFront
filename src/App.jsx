@@ -41,8 +41,8 @@ function App() {
             <FavoritesProvider>
               <Router>
               <CartDrawer />
+              <ScrollToTop />
               <Routes>
-                <ScrollToTop />
                 {/* Customer Routes */}
                 <Route path="/" element={<CustomerLayout />}>
                   <Route index element={<Home />} />
