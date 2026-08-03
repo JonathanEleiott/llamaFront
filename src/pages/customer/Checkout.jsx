@@ -81,7 +81,7 @@ const Checkout = () => {
             code: promoCode.trim().toUpperCase(),
             subtotal: subtotal,
             items: items.map((item) => ({ id: item.id, quantity: item.quantity, price: item.price })),
-            selectedFreeItems: freeItemSelections || selectedFreeItems,
+            selectedFreeItems: selectedFreeItems,
           }),
         }
       );
@@ -166,6 +166,11 @@ const Checkout = () => {
       }));
     }
   }, [isAuthenticated, user]);
+
+  // Check Promo if quantity changes
+  useEffect(() => {
+    handleApplyPromo();
+  }, [items])
 
   const handleChange = (e) => {
     const { name, value } = e.target;

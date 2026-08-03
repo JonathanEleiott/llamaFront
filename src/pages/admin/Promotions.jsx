@@ -84,8 +84,8 @@ const Promotions = () => {
       accessor: 'active',
       render: (row) => {
         const now = new Date();
-        const start = new Date(row.startDate);
-        const end = new Date(row.endDate);
+        const start = new Date(row.start_date);
+        const end = new Date(row.end_date);
         const isActive = row.active && now >= start && now <= end;
         const isExpired = now > end;
 
