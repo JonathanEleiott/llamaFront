@@ -14,8 +14,6 @@ const Checkout = () => {
   const {
     items,
     subtotal,
-    discount,
-    setDiscount,
     tax,
     total,
     itemCount,
@@ -25,7 +23,7 @@ const Checkout = () => {
     clearCart,
   } = useCart();
   const { user, isAuthenticated } = useAuth();
-
+  const [discount, setDiscount] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
   const [step, setStep] = useState(1); // 1: Review, 2: Details, 3: Payment
   const [formData, setFormData] = useState({
