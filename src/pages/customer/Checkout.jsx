@@ -596,6 +596,12 @@ const Checkout = () => {
                     <span>Subtotal</span>
                     <span>{formatPrice(subtotal)}</span>
                   </div>
+                  {discount > 0 && (
+                    <div className="summary-row discount">
+                      <span>Discount</span>
+                      <span>-{formatPrice(discount)}</span>
+                    </div>
+                  )}
                   <div className="summary-row">
                     <span>Tax (7%)</span>
                     <span>{formatPrice(tax)}</span>
@@ -609,9 +615,7 @@ const Checkout = () => {
                   <div className="summary-row total">
                     <span>Total</span>
                     <span>
-                      {formatPrice(
-                        total + (formData.orderType === 'delivery' ? 10 : 0)
-                      )}
+                      {formatPrice(total - discount + (formData.orderType === 'delivery' ? 10 : 0))}
                     </span>
                   </div>
                 </div>
@@ -637,10 +641,10 @@ const Checkout = () => {
                   {isProcessing ? (
                     'Processing...'
                   ) : (
-                    <>
-                      <CreditCard size={18} />
-                      Pay {formatPrice(total + (formData.orderType === 'delivery' ? 10 : 0))}
-                    </>
+                    <span className="payment-methods">
+                      <CreditCard size={16} />
+                      Pay {formatPrice(total - discount + (formData.orderType === 'delivery' ? 10 : 0))}
+                    </span>
                   )}
                 </Button>
               )}
