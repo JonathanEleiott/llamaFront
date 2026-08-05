@@ -14,6 +14,8 @@ const Checkout = () => {
   const {
     items,
     subtotal,
+    discount,
+    setDiscount,
     tax,
     total,
     itemCount,
@@ -53,7 +55,6 @@ const Checkout = () => {
   const [promoLoading, setPromoLoading] = useState(false);
   const [promoError, setPromoError] = useState('');
   const [appliedPromo, setAppliedPromo] = useState(null);
-  const [discount, setDiscount] = useState(0);
   const [freeItems, setFreeItems] = useState([]);
   const [promoNeedsMoreItems, setPromoNeedsMoreItems] = useState(null);
   const [selectedFreeItems, setSelectedFreeItems] = useState([]);

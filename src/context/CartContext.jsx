@@ -7,6 +7,7 @@ const CART_STORAGE_KEY = 'llamaTreatsCart';
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [discount, setDiscount] = useState(0);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -121,7 +122,7 @@ export const CartProvider = ({ children }) => {
 
   // Tax calculation (example: 7% sales tax)
   const taxRate = 0.07;
-  const tax = useMemo(() => subtotal * taxRate, [subtotal]);
+  const tax = useMemo(() => (subtotal - discount) * taxRate, [subtotal, discount]);
 
   const total = useMemo(() => subtotal + tax, [subtotal, tax]);
 
@@ -147,6 +148,7 @@ export const CartProvider = ({ children }) => {
     updateQuantity,
     incrementQuantity,
     decrementQuantity,
+    setDiscount,
     clearCart,
     toggleCart,
     openCart,
@@ -155,6 +157,7 @@ export const CartProvider = ({ children }) => {
     // Computed
     itemCount,
     subtotal,
+    discount,
     tax,
     taxRate,
     total,
