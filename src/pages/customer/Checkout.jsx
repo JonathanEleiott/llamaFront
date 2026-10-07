@@ -268,7 +268,7 @@ const Checkout = () => {
           subtotal: isFreePromoOrder ? 0 : subtotal,
           tax: isFreePromoOrder ? 0 : checkoutTax,
           total: orderTotal,
-
+          notes: formData.deliveryInstructions,
           // Transform to snake_case for backend API
           customer_info: {
             email: formData.email,
@@ -277,7 +277,6 @@ const Checkout = () => {
             customer_id: isAuthenticated && user ? user.id : null,
             first_name: formData.firstName,
             last_name: formData.lastName,
-            notes: formData.deliveryInstructions,
             name: `${formData.firstName} ${formData.lastName}`.trim() || user?.firstName && `${user.firstName} ${user.lastName}`.trim(),
             ...(formData.orderType === 'pickup'
               ? {
