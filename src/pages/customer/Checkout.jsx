@@ -42,7 +42,7 @@ const Checkout = () => {
     city: '',
     state: '',
     zipCode: '',
-    deliveryInstructions: '',
+    deliveryNotes: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -268,7 +268,7 @@ const Checkout = () => {
           subtotal: isFreePromoOrder ? 0 : subtotal,
           tax: isFreePromoOrder ? 0 : checkoutTax,
           total: orderTotal,
-          notes: formData.deliveryInstructions,
+          notes: formData.deliveryNotes,
           // Transform to snake_case for backend API
           customer_info: {
             email: formData.email,
@@ -291,7 +291,6 @@ const Checkout = () => {
                   city: formData.city,
                   state: formData.state,
                   zip_code: formData.zipCode,
-                  delivery_instructions: formData.deliveryInstructions,
                 }),
           },
         }),
@@ -566,8 +565,8 @@ const Checkout = () => {
                     <div className="input-wrapper">
                       <label className="input-label">Delivery Instructions or Notes (optional)</label>
                       <textarea
-                        name="deliveryInstructions"
-                        value={formData.deliveryInstructions}
+                        name="deliveryNotes"
+                        value={formData.deliveryNotes}
                         onChange={handleChange}
                         className="input-field"
                         rows={3}
