@@ -46,6 +46,9 @@ export const ENDPOINTS = {
   USERS: '/auth/users',
   USER_STATUS: (id) => `/auth/users/${id}/status`,
 
+  // Orders (admin)
+  ADMIN_ORDERS: '/',
+
   // Health
   HEALTH: '/health',
 };

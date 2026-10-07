@@ -473,6 +473,10 @@ class ApiService {
     });
   }
 
+  async getAdminOrders() {
+    return this.request(ENDPOINTS.ADMIN_ORDERS);
+  }
+
   // Helper to check if user is authenticated
   isAuthenticated() {
     return !!localStorage.getItem('adminToken');

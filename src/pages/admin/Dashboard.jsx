@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Package,
@@ -10,13 +11,57 @@ import {
   ShoppingBag,
   ArrowRight,
   Plus,
+  Search,
+  RefreshCw,
 } from 'lucide-react';
 import { Button } from '../../components/common';
 import { useBakery } from '../../context/BakeryContext';
+import { apiService } from '../../api/apiService';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const { products, categories, activeSpecials, activePromotions } = useBakery();
+  const [orders, setOrders] = useState([]);
+  const [ordersLoading, setOrdersLoading] = useState(true);
+  const [ordersError, setOrdersError] = useState('');
+  const [orderSearch, setOrderSearch] = useState('');
+
+  const loadOrders = async () => {
+    setOrdersLoading(true);
+    setOrdersError('');
+    try {
+      const response = await apiService.getAdminOrders();
+      const rows = Array.isArray(response)
+        ? response
+        : response.orders ?? response.data?.orders ?? response.data ?? [];
+      setOrders(Array.isArray(rows) ? rows : []);
+    } catch (error) {
+      setOrdersError(error.message || 'Unable to load order history.');
+    } finally {
+      setOrdersLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadOrders();
+  }, []);
+
+  const filteredOrders = useMemo(() => {
+    const query = orderSearch.trim().toLowerCase();
+    const newestFirst = [...orders].sort((a, b) =>
+      new Date(b.createdAt ?? b.created_at ?? 0) - new Date(a.createdAt ?? a.created_at ?? 0)
+    );
+    if (!query) return newestFirst;
+    return newestFirst.filter((order) => [
+      order.orderNumber, order.order_number, order.id,
+      order.customerName, order.customer_name, order.customer?.name,
+      order.email, order.customerEmail, order.customer_email, order.status,
+    ].some((value) => String(value ?? '').toLowerCase().includes(query)));
+  }, [orders, orderSearch]);
+
+  const formatOrderDate = (value) => value
+    ? new Date(value).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })
+    : '—';
 
   // Calculate statistics
   const stats = [
@@ -188,6 +233,66 @@ const Dashboard = () => {
           <p>Analytics dashboard coming soon</p>
           <span>Track your bakery's performance with detailed charts and insights</span>
         </div>
+      </section>
+
+      <section className="order-history-section">
+        <div className="section-header">
+          <div>
+            <h2 className="section-title">Order History</h2>
+            <p className="order-history-subtitle">All customer orders, newest first</p>
+          </div>
+          <button className="order-refresh-button" onClick={loadOrders} disabled={ordersLoading}>
+            <RefreshCw size={16} className={ordersLoading ? 'spinning' : ''} />
+            Refresh
+          </button>
+        </div>
+
+        <label className="order-history-search">
+          <Search size={18} aria-hidden="true" />
+          <input
+            type="search"
+            placeholder="Search order, customer, email, or status"
+            value={orderSearch}
+            onChange={(event) => setOrderSearch(event.target.value)}
+          />
+        </label>
+
+        {ordersLoading ? (
+          <p className="order-history-message" role="status">Loading order history…</p>
+        ) : ordersError ? (
+          <div className="order-history-message order-history-error" role="alert">
+            <span>{ordersError}</span>
+            <button onClick={loadOrders}>Try again</button>
+          </div>
+        ) : (
+          <div className="order-history-table-wrap">
+            <table className="order-history-table">
+              <thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Status</th><th>Items</th><th>Total</th></tr></thead>
+              <tbody>
+                {filteredOrders.map((order, index) => {
+                  const orderId = order.id ?? order.orderId ?? order.order_id ?? index;
+                  const customerName = order.customerName ?? order.customer_name ?? order.customer?.name ?? 'Guest';
+                  const email = order.customerEmail ?? order.customer_email ?? order.email ?? order.customer?.email ?? '';
+                  const items = order.items ?? order.orderItems ?? order.order_items ?? [];
+                  const itemCount = Array.isArray(items) ? items.reduce((count, item) => count + Number(item.quantity ?? 1), 0) : Number(order.itemCount ?? order.item_count ?? 0);
+                  const status = order.status ?? 'Pending';
+                  const total = Number(order.total ?? order.totalAmount ?? order.total_amount ?? 0);
+                  return (
+                    <tr key={orderId}>
+                      <td className="order-history-number">{order.orderNumber ?? order.order_number ?? `#${orderId}`}</td>
+                      <td><span className="order-customer-name">{customerName}</span>{email && <span className="order-customer-email">{email}</span>}</td>
+                      <td>{formatOrderDate(order.createdAt ?? order.created_at ?? order.date)}</td>
+                      <td><span className={`order-history-status status-${String(status).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>{status}</span></td>
+                      <td>{itemCount}</td>
+                      <td>${Number.isFinite(total) ? total.toFixed(2) : '0.00'}</td>
+                    </tr>
+                  );
+                })}
+                {filteredOrders.length === 0 && <tr><td colSpan="6" className="order-history-empty">{orders.length ? 'No orders match your search.' : 'No orders yet.'}</td></tr>}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
     </div>
   );
