@@ -42,7 +42,7 @@ const Checkout = () => {
     city: '',
     state: '',
     zipCode: '',
-    deliveryInstructions: '',
+    deliveryNotes: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -277,6 +277,7 @@ const Checkout = () => {
             customer_id: isAuthenticated && user ? user.id : null,
             first_name: formData.firstName,
             last_name: formData.lastName,
+            notes: formData.deliveryNotes,
             name: `${formData.firstName} ${formData.lastName}`.trim() || user?.firstName && `${user.firstName} ${user.lastName}`.trim(),
             ...(formData.orderType === 'pickup'
               ? {
@@ -291,7 +292,6 @@ const Checkout = () => {
                   city: formData.city,
                   state: formData.state,
                   zip_code: formData.zipCode,
-                  delivery_instructions: formData.deliveryInstructions,
                 }),
           },
         }),
@@ -564,10 +564,10 @@ const Checkout = () => {
                       />
                     </div>
                     <div className="input-wrapper">
-                      <label className="input-label">Delivery Instructions (optional)</label>
+                      <label className="input-label">Delivery Instructions or Notes (optional)</label>
                       <textarea
-                        name="deliveryInstructions"
-                        value={formData.deliveryInstructions}
+                        name="deliveryNotes"
+                        value={formData.deliveryNotes}
                         onChange={handleChange}
                         className="input-field"
                         rows={3}
