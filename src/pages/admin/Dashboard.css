@@ -452,6 +452,55 @@
   white-space: nowrap;
 }
 
+.order-history-table .order-history-long-text {
+  max-width: 240px;
+  white-space: normal;
+  line-height: 1.45;
+}
+
+.order-items-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #5c3d2e;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.order-items-detail-row td {
+  padding: 0.75rem 1rem 1rem;
+  background: #fdfbf9;
+}
+
+.order-items-detail-list {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 700px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.order-items-detail-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #5c3d2e;
+}
+
+.order-items-detail-list strong {
+  white-space: nowrap;
+}
+
+.order-history-no-items {
+  color: #7a5240;
+}
+
 .order-history-number,
 .order-customer-name {
   font-weight: 600;

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Package,
@@ -13,6 +13,8 @@ import {
   Plus,
   Search,
   RefreshCw,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import { Button } from '../../components/common';
 import { useBakery } from '../../context/BakeryContext';
@@ -25,6 +27,7 @@ const Dashboard = () => {
   const [ordersLoading, setOrdersLoading] = useState(true);
   const [ordersError, setOrdersError] = useState('');
   const [orderSearch, setOrderSearch] = useState('');
+  const [expandedOrderId, setExpandedOrderId] = useState(null);
 
   const loadOrders = async () => {
     setOrdersLoading(true);
@@ -267,7 +270,7 @@ const Dashboard = () => {
         ) : (
           <div className="order-history-table-wrap">
             <table className="order-history-table">
-              <thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Status</th><th>Items</th><th>Total</th></tr></thead>
+              <thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Status</th><th>Delivery Address</th><th>Notes</th><th>Items</th><th>Total</th></tr></thead>
               <tbody>
                 {filteredOrders.map((order, index) => {
                   const orderId = order.id ?? order.orderId ?? order.order_id ?? index;
@@ -277,18 +280,62 @@ const Dashboard = () => {
                   const itemCount = Array.isArray(items) ? items.reduce((count, item) => count + Number(item.quantity ?? 1), 0) : Number(order.itemCount ?? order.item_count ?? 0);
                   const status = order.status ?? 'Pending';
                   const total = Number(order.total ?? order.totalAmount ?? order.total_amount ?? 0);
+                  const address = order.deliveryAddress ?? order.delivery_address ?? order.address;
+                  const addressText = typeof address === 'string'
+                    ? address
+                    : address && typeof address === 'object'
+                      ? [address.street, address.addressLine1, address.address_line_1, address.addressLine2, address.city, address.state, address.postalCode, address.postal_code, address.zip]
+                        .filter(Boolean).join(', ')
+                      : '';
+                  const notes = order.notes ?? order.customerNotes ?? order.customer_notes ?? '';
+                  const isExpanded = expandedOrderId === orderId;
                   return (
-                    <tr key={orderId}>
-                      <td className="order-history-number">{order.orderNumber ?? order.order_number ?? `#${orderId}`}</td>
-                      <td><span className="order-customer-name">{customerName}</span>{email && <span className="order-customer-email">{email}</span>}</td>
-                      <td>{formatOrderDate(order.createdAt ?? order.created_at ?? order.date)}</td>
-                      <td><span className={`order-history-status status-${String(status).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>{status}</span></td>
-                      <td>{itemCount}</td>
-                      <td>${Number.isFinite(total) ? total.toFixed(2) : '0.00'}</td>
-                    </tr>
+                    <Fragment key={orderId}>
+                      <tr>
+                        <td className="order-history-number">{order.orderNumber ?? order.order_number ?? `#${orderId}`}</td>
+                        <td><span className="order-customer-name">{customerName}</span>{email && <span className="order-customer-email">{email}</span>}</td>
+                        <td>{formatOrderDate(order.createdAt ?? order.created_at ?? order.date)}</td>
+                        <td><span className={`order-history-status status-${String(status).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>{status}</span></td>
+                        <td className="order-history-long-text">{addressText || '—'}</td>
+                        <td className="order-history-long-text">{notes || '—'}</td>
+                        <td>
+                          <button
+                            className="order-items-toggle"
+                            onClick={() => setExpandedOrderId(isExpanded ? null : orderId)}
+                            aria-expanded={isExpanded}
+                            aria-label={`${isExpanded ? 'Hide' : 'View'} items for order ${order.orderNumber ?? orderId}`}
+                          >
+                            {itemCount} {itemCount === 1 ? 'item' : 'items'}
+                            {isExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+                          </button>
+                        </td>
+                        <td>${Number.isFinite(total) ? total.toFixed(2) : '0.00'}</td>
+                      </tr>
+                      {isExpanded && (
+                        <tr className="order-items-detail-row">
+                          <td colSpan="8">
+                            {Array.isArray(items) && items.length > 0 ? (
+                              <ul className="order-items-detail-list">
+                                {items.map((item, itemIndex) => {
+                                  const quantity = Number(item.quantity ?? 1);
+                                  const name = item.productName ?? item.product_name ?? item.name ?? item.product?.name ?? 'Order item';
+                                  const lineTotal = Number(item.totalPrice ?? item.total_price ?? item.lineTotal ?? item.line_total ?? item.price * quantity);
+                                  return (
+                                    <li key={item.id ?? item.productId ?? item.product_id ?? itemIndex}>
+                                      <span>{quantity} × {name}</span>
+                                      {Number.isFinite(lineTotal) && <strong>${lineTotal.toFixed(2)}</strong>}
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            ) : <span className="order-history-no-items">No item details available for this order.</span>}
+                          </td>
+                        </tr>
+                      )}
+                    </Fragment>
                   );
                 })}
-                {filteredOrders.length === 0 && <tr><td colSpan="6" className="order-history-empty">{orders.length ? 'No orders match your search.' : 'No orders yet.'}</td></tr>}
+                {filteredOrders.length === 0 && <tr><td colSpan="8" className="order-history-empty">{orders.length ? 'No orders match your search.' : 'No orders yet.'}</td></tr>}
               </tbody>
             </table>
           </div>
