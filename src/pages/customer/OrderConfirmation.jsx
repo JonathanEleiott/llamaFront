@@ -115,7 +115,7 @@ const OrderConfirmation = () => {
 
           <h1>Order Confirmed!</h1>
           <p className="confirmation-message">
-            Thank you for your order! We've sent a confirmation email with your order details.
+            Thank you for your order!
           </p>
 
           {(orderDetails || sessionId) && (
@@ -129,8 +129,8 @@ const OrderConfirmation = () => {
             <div className="detail-card">
               <Clock size={24} />
               <div>
-                <h3>Estimated Time</h3>
-                <p>Your order will be ready to ship within 24-48 hours</p>
+                <h3>Preparing your order</h3>
+                <p>We will start working on your order as soon as possible</p>
               </div>
             </div>
             {/* <div className="detail-card">
@@ -147,15 +147,15 @@ const OrderConfirmation = () => {
             <ul>
               <li>
                 <span className="step-num">1</span>
-                <span>You'll receive an email confirmation shortly</span>
-              </li>
-              <li>
-                <span className="step-num">2</span>
                 <span>We'll start preparing your delicious treats</span>
               </li>
               <li>
+                <span className="step-num">2</span>
+                <span>You'll receive a message letting you know when your order has been shipped</span>
+              </li>
+              <li>
                 <span className="step-num">3</span>
-                <span>We'll notify you when your order is ready</span>
+                <span>Eagerly wait by your mailbox for your treats to be delivered</span>
               </li>
             </ul>
           </div>
