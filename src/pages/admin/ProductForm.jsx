@@ -16,6 +16,7 @@ const ProductForm = () => {
     slug: '',
     description: '',
     price: '',
+    price_unit: '',
     categoryId: '',
     images: [],
     featured: false,
@@ -47,6 +48,7 @@ const ProductForm = () => {
           slug: product.slug || '',
           description: product.description || '',
           price: product.price?.toString() || '',
+          price_unit: product.price_unit || product.priceUnit || '',
           categoryId: categoryId?.toString() || '',
           images: product.images?.map((url) => ({ url, preview: url })) || [],
           featured: product.featured || false,
@@ -119,6 +121,10 @@ const ProductForm = () => {
       newErrors.price = 'Valid price is required';
     }
 
+    if (!formData.price_unit.trim()) {
+      newErrors.price_unit = 'Price unit is required';
+    }
+
     if (!formData.categoryId) {
       newErrors.categoryId = 'Category is required';
     }
@@ -153,6 +159,7 @@ const ProductForm = () => {
       slug: formData.slug,
       description: formData.description,
       price: parseFloat(formData.price),
+      price_unit: formData.price_unit.trim(),
       category_id: parseInt(formData.categoryId),
       featured: formData.featured,
       active: formData.active,
@@ -251,6 +258,16 @@ const ProductForm = () => {
                   error={errors.price}
                   required
                   placeholder="0.00"
+                />
+
+                <Input
+                  label="Price Unit"
+                  name="price_unit"
+                  value={formData.price_unit}
+                  onChange={handleChange}
+                  error={errors.price_unit}
+                  required
+                  placeholder="e.g., each, dozen, pound"
                 />
 
                 <Select

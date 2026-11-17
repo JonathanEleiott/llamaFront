@@ -186,7 +186,7 @@ const Dashboard = () => {
                     {categories.find(c => c.id === (product.categoryId || product.category_id))?.name || 'Uncategorized'}
                   </span>
                 </div>
-                <span className="item-price">${parseFloat(product.price).toFixed(2)}</span>
+                <span className="item-price">${parseFloat(product.price).toFixed(2)} / {product.price_unit || product.priceUnit}</span>
               </div>
             ))}
           </div>

@@ -162,7 +162,7 @@ const ProductDetail = () => {
             )}
 
             <div className="product-price">
-              {formatPrice(product.price)}
+              {formatPrice(product.price)} / {product.price_unit || product.priceUnit}
             </div>
 
             <p className="product-description">{product.description}</p>
@@ -281,7 +281,7 @@ const ProductDetail = () => {
                   </div>
                   <div className="related-info">
                     <h4>{relatedProduct.name}</h4>
-                    <span className="related-price">{formatPrice(relatedProduct.price)}</span>
+                    <span className="related-price">{formatPrice(relatedProduct.price)} / {relatedProduct.price_unit || relatedProduct.priceUnit}</span>
                   </div>
                 </Link>
               ))}
