@@ -52,7 +52,11 @@ const Products = () => {
     {
       header: 'Price',
       accessor: 'price',
-      render: (row) => <span className="price">${parseFloat(row.price).toFixed(2)} / {row.price_unit || row.priceUnit}</span>,
+      render: (row) => (
+        <span className="price">
+          ${parseFloat(row.price).toFixed(2)} {(row.price_unit || row.priceUnit) === 'item' ? '' : `/ ${row.price_unit || row.priceUnit}`}
+        </span>
+      ),
       width: '140px',
     },
     {

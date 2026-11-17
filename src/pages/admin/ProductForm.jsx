@@ -267,7 +267,7 @@ const ProductForm = () => {
                   onChange={handleChange}
                   error={errors.price_unit}
                   required
-                  placeholder="e.g., each, dozen, pound"
+                  placeholder="e.g., item, dozen, pound"
                 />
 
                 <Select
